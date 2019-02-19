@@ -53,6 +53,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\BaseEntity.cs" />
+    <Compile Include="Data\EfRepository.cs" />
+    <Compile Include="Data\IDbContext.cs" />
     <Compile Include="Data\IRepository.cs" />
     <Compile Include="Modules\DBModel.cs" />
     <Compile Include="Modules\Student.cs" />
