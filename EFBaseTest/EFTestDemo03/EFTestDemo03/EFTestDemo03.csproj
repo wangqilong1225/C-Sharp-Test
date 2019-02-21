@@ -61,6 +61,7 @@
     <Compile Include="App_Start\ContainerConfig.cs" />
     <Compile Include="Data\BaseEntity.cs" />
     <Compile Include="Data\EfRepository.cs" />
+    <Compile Include="Data\EFEntityTypeConfiguration.cs" />
     <Compile Include="Data\IDbContext.cs" />
     <Compile Include="Data\IRepository.cs" />
     <Compile Include="Data\ObjectContext.cs" />
