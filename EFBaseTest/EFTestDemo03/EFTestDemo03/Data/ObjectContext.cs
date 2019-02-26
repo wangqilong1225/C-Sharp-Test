@@ -12,7 +12,30 @@ namespace EFTestDemo03.Data
     {
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            var typesToRegister = Assembly.GetExecutingAssembly().GetTypes().Where(type => !String.IsNullOrEmpty(type.Namespace)).Where(type => type.BaseType != null && type.BaseType.IsGenericType && type.BaseType.GetGenericTypeDefinition() == typeof(EFEntityTypeConfiguration<>));
+            var typesToRegister = Assembly.GetExecutingAssembly().GetTypes().Where(type => !String.IsNullOrEmpty(type.Namespace)).
+                Where(type => type.BaseType != null && type.BaseType.IsGenericType && type.BaseType.GetGenericTypeDefinition() == typeof(EFEntityTypeConfiguration<>));
+
+            foreach (var type in typesToRegister)
+            {
+                dynamic configurationInstance = Activator.CreateInstance(type);
+                modelBuilder.Configurations.Add(configurationInstance);
+            }
+
+            Database.SetInitializer<ObjectContext>(null);
+
+            base.OnModelCreating(modelBuilder);
+        }
+
+        protected virtual TEntity AttachEntityToContext<TEntity>(TEntity entity) where TEntity : BaseEntity, new()
+        {
+            var alreadyAttached = Set<TEntity>().Local.FirstOrDefault(x => x.Id == entity.Id);
+            if (alreadyAttached == null)
+            {
+                Set<TEntity>().Attach(entity);
+                return entity;
+            }
+
+            return alreadyAttached;
         }
 
         public bool ProxyCreationEnabled
