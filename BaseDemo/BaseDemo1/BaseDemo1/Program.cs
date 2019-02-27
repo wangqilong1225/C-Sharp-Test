@@ -15,12 +15,11 @@ namespace BaseDemo1
             b.Print();
             c.Print();
 
-            A b1 = new B();
-            A c1 = new C();
+            //A b1 = new B();
+            //A c1 = new C();
             //b1.Print();
             //c1.Print();
             Console.ReadKey();
-
         }
     }
 }
