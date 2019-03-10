@@ -12,5 +12,10 @@ namespace SQLTestDemo1.Model
         public string name;
         public string password;
         public int score;
+
+        public string ToString()
+        {
+            return "id:"+id+",name:"+name+",password:"+password+",score:"+score;
+        }
     }
 }

@@ -26,9 +26,9 @@ namespace SQLTestDemo1
                 cmd.Connection = conn;
                 conn.Open();
                 
-                SqlDataReader reader = cmd.ExecuteReader();  
-                
-                if (reader.Read())
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
                 {
                     Student stu = new Student();
                     stu.id = Convert.ToInt32(reader["id"]);
@@ -37,6 +37,13 @@ namespace SQLTestDemo1
                     stu.score = Convert.ToInt32(reader["score"]);
                     StuList.Add(stu);
                 }
+                if (StuList!=null)
+                {              
+                    foreach (Student stu in StuList) {
+                        Console.WriteLine(stu.ToString());
+                    }
+                }
+                Console.ReadKey();
             }
         }
     }
