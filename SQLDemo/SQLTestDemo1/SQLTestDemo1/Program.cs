@@ -16,9 +16,33 @@ namespace SQLTestDemo1
 
             //ExecuteReader()方法
             FunExecuteReader();
+
             // ExecuteScalar()方法
             FunExecuteScalar();
 
+            //ExecuteNonQuery()方法
+            FunExecuteNonQuery();
+        }
+
+        /// <summary>
+        /// ExecuteNonQuery()方法
+        /// </summary>
+        public static void FunExecuteNonQuery()
+        {
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SQLConnection"].ConnectionString))
+
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.CommandType = CommandType.Text; //默认 Text               
+                cmd.CommandText = "Update Student SET name='王丽' Where id='1004'";
+                cmd.Connection = conn;
+                conn.Open();
+
+                //对连接执行 Transact-SQL 语句并返回受影响的行数。
+                int id = (Int32)cmd.ExecuteNonQuery();
+
+                Console.ReadKey();
+            }
         }
 
         /// <summary>
@@ -41,15 +65,6 @@ namespace SQLTestDemo1
                 
                 Console.ReadKey();
             }
-        }
-
-        /// <summary>
-        /// ExecuteNonQuery()方法
-        /// </summary>
-        public static void FunExecuteNonQuery()
-        {
-            
-                
         }
         
         /// <summary>
