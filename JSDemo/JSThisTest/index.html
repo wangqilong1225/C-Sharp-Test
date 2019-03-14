@@ -1,0 +1,46 @@
+<html>
+<header>
+    <title>JS通过标签自身属性获取属性值</title>
+    <!-- 这种方式可以处理 JS拼接成的html片段绑定事件 -->
+    <script src="jquery-3.1.1.min.js"></script>
+</header>
+
+<body>
+    <input value="inputVal" data-name="李四" data-age="15" onblur="funBlur(this)"/>
+
+    <!--注意:在this中取dataset中对应属性时，名称必须用全小写，取标签自身值时必须用value-->
+    <input value="inputVal2" data-Name2="张三" data-Age2="18" onblur="funBlur2(this)"/>
+
+    <!--使用span标签 取标签自身值使用textContent-->
+    <span data-name="王五" data-age="12" onclick="funClick(this)">spanVal</span>
+</body>
+<script>
+    function funBlur(obj)
+    {
+        var name = obj.dataset.name;
+        var age = obj.dataset.age;
+        var inputVal=obj.value;
+        console.log("Name:"+name+",Age:"+age+",InputVal:"+inputVal);     //Name:李四,Age:15,InputVal:inputVal
+    }
+
+    //注意:在this中取dataset中对应属性时，名称必须用全小写，取标签自身值时必须用value
+    function funBlur2(obj)
+    {
+        var name2 = obj.dataset.Name;   //undefined
+        var age2 = obj.dataset.Age;     //undefined
+        var inputVal2=obj.val;          //undefined
+        console.log("Name:"+name2+",Age:"+age2+",InputVal:"+inputVal2);  //Name:undefined,Age:undefined,InputVal:undefined
+    }
+
+    function funClick(obj)
+    {
+        var name = obj.dataset.name;
+        var age = obj.dataset.age;
+        var spanVal=obj.textContent;    //看这里 
+        console.log("Name:"+name+",Age:"+age+",spanVal:"+spanVal);     //Name:王五,Age:12,spanVal:spanVal
+    }
+    //input和span标签取自身值的方式是不同的，推测其他标签取自身属性值时方式也会有所不同，具体情况应具体对待
+    //使用web浏览器对代码进行调试，查看标签本身的属性
+</script>
+
+</html>
