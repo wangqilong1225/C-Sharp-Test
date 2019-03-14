@@ -1,0 +1,32 @@
+<html>
+    <header>
+        <title>index</title>
+        <script src="jquery-3.1.1.min.js"></script>
+    </header>
+
+    <body>
+        <div>
+            <input id="id_1" class="id_1" value="啦啦啦" name="李丽" sid="sid_1" data-s="lili" onclick="funClick(this)" />            
+        </div>
+
+    </body>
+    <script>
+        function funClick(obj)
+        {
+            var data = $(obj).attr("data-s");
+
+            var inputVal = $("#id_1").val();
+            
+            //可以使用任意属性获取
+            var inputVal2 = $("input[sid='sid_1']").val();
+            
+            var inputVal3 = obj.value;
+
+            var inputVal4 = document.getElementById("id_1").value;
+
+            console.log(inputVal + "," + inputVal2 + "," +inputVal3);
+            
+        }
+    
+    </script>
+</html>
