@@ -1,10 +1,10 @@
 <html>
 <header>
     <title>JS通过标签自身属性获取属性值</title>
-    <!-- 这种方式可以处理 JS拼接成的html片段绑定事件 -->
     <script src="jquery-3.1.1.min.js"></script>
 </header>
 
+<!-- 这种方式可以处理 JS拼接成的html片段绑定事件 -->
 <body>
     <input value="inputVal" data-name="李四" data-age="15" onblur="funBlur(this)"/>
 
@@ -36,7 +36,7 @@
     {
         var name = obj.dataset.name;
         var age = obj.dataset.age;
-        var spanVal=obj.textContent;    //看这里 
+        var spanVal=obj.textContent;    //看这里 使用span标签 取标签自身值使用textContent
         console.log("Name:"+name+",Age:"+age+",spanVal:"+spanVal);     //Name:王五,Age:12,spanVal:spanVal
     }
     //input和span标签取自身值的方式是不同的，推测其他标签取自身属性值时方式也会有所不同，具体情况应具体对待
