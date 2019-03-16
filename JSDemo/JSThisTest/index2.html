@@ -6,6 +6,7 @@
 
     <body>
         <div>
+            <!-- 简单绑定单击方法，其他事件一样处理 -->
             <input id="id_1" class="id_1" value="啦啦啦" name="李丽" sid="sid_1" data-s="lili" onclick="funClick(this)" />            
         </div>
 
@@ -17,15 +18,15 @@
 
             var inputVal = $("#id_1").val();
             
-            //可以使用任意属性获取
+            //可以使用任意属性获取,套格式
             var inputVal2 = $("input[sid='sid_1']").val();
             
             var inputVal3 = obj.value;
 
             var inputVal4 = document.getElementById("id_1").value;
 
-            console.log(inputVal + "," + inputVal2 + "," +inputVal3);
-            
+            console.log("inputVal:"+inputVal + ",inputVal2:" + inputVal2 + ",inputVal3:" + inputVal3 + ",inputVal4:" + inputVal4);
+            //inputVal:啦啦啦,inputVal2:啦啦啦,inputVal3:啦啦啦,inputVal4:啦啦啦
         }
     
     </script>
