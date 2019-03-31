@@ -15,13 +15,45 @@ namespace SQLTestDemo1
         {
 
             //ExecuteReader()方法
-            FunExecuteReader();
+            //FunExecuteReader();
 
             // ExecuteScalar()方法
-            FunExecuteScalar();
+            //FunExecuteScalar();
 
             //ExecuteNonQuery()方法
-            FunExecuteNonQuery();
+            //FunExecuteNonQuery();
+            Product product = new Product();
+            product.ProductID = new Guid("AC1245CD-AC12-EF56-1234-ACBD1234ACBD");
+            product.Description = "desc";
+            SQLFunction(product);
+        }
+
+
+        public static void SQLFunction(Product product) {
+            List<Product> productList = new List<Product>();
+
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SQLConnection"].ConnectionString))
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.CommandType = CommandType.StoredProcedure; //默认 Text               0
+                cmd.CommandText = "dbo.GetProductList";
+                cmd.Connection = conn;
+                conn.Open();
+                cmd.Parameters.AddWithValue("ProductID", product.ProductID);
+                cmd.Parameters.AddWithValue("Price", product.Price);
+                cmd.Parameters.AddWithValue("Description", product.Description);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read()) {
+                    Product pro = new Product();
+                    //pro.ProductID = reader.GetGuid(reader["ProductID"]);
+                    pro.Description = reader["Description"].ToString();;
+                }
+
+               // Console.ReadKey();
+            }
+
+
         }
 
         /// <summary>
