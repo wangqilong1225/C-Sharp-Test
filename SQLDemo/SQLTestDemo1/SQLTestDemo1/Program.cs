@@ -24,8 +24,34 @@ namespace SQLTestDemo1
             //FunExecuteNonQuery();
             Product product = new Product();
             product.ProductID = new Guid("AC1245CD-AC12-EF56-1234-ACBD1234ACBD");
-            product.Description = "desc";
+            product.Description = "5000";
             SQLFunction(product);
+        }
+
+        public static void SQLFunction2(Product product) {
+            string sql = "SELECT ProductID,Name,Price,Description FROM [test].[dbo].[Product] WHERE 1=1";
+            if (product.ProductID!=null) {
+                sql = sql + " AND ProductID='"+ product.ProductID + "'";
+            }
+            if (product.Description != "") {
+                sql = sql + " AND Description like '%" + product.Description + "%'";
+            }
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SQLConnection"].ConnectionString))
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.CommandType = CommandType.Text;            
+                cmd.CommandText = sql;
+                cmd.Connection = conn;
+                conn.Open();
+           
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Product pro = new Product();                   
+                    pro.Description = reader["Description"].ToString();
+                    //...
+                }
+            }
         }
 
 
@@ -47,13 +73,11 @@ namespace SQLTestDemo1
                 while (reader.Read()) {
                     Product pro = new Product();
                     //pro.ProductID = reader.GetGuid(reader["ProductID"]);
-                    pro.Description = reader["Description"].ToString();;
+                    pro.Description = reader["Description"].ToString();
                 }
 
                // Console.ReadKey();
             }
-
-
         }
 
         /// <summary>
