@@ -1,31 +1,81 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model List<JSDataTable.Models.People>
+@{
+    ViewBag.Title = "_AssetPartial";
 }
+<script src="~/Content/JS/jquery-2.1.1.js"></script>
+<link href="~/Content/Css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/Css/datatables.min.css" rel="stylesheet" />
+<link href="~/Content/Css/animate.css" rel="stylesheet" />
+<script src="~/Content/JS/bootstrap.min.js"></script>
+<script src="~/Content/JS/datatables.min.js"></script>
+<br><br>
+<table class="table table-bordered table-hover dataTable" id="tblnotifyme" style="width: 100%; margin-top: 10px">
+    <thead style="font-weight: bold">
+        <tr>
+            <th class="text-center">
+                ID
+            </th>
+            <th class="text-center">
+                Name
+            </th>
+            <th class="text-center">
+                Address
+            </th>
+            <th class="text-center">
+                Description
+            </th>
+            <th class="text-center">
+                BirthDay
+            </th>
+            <th class="text-center">
+                UpdatedDate
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (var i in Model)
+            {
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+                #region yyyy/MM/dd格式转化
+                string HiddenstrBirthDay;
+                if (i.BirthDay != null)
+                {
+                    DateTime dtBirthDay = (DateTime)i.BirthDay;
+                    HiddenstrBirthDay = dtBirthDay.ToString("yyyyMMdd");  //yyyyMMddHHmmss
+                }
+                else { HiddenstrBirthDay = ""; }
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+                string HiddenstrUpdatedDate;
+                if (i.UpdatedDate != null)
+                {
+                    DateTime dtUpdatedDate = (DateTime)i.UpdatedDate;
+                    HiddenstrUpdatedDate = dtUpdatedDate.ToString("yyyyMMdd");
+                }
+                else { HiddenstrUpdatedDate = ""; }
+                #endregion
+
+                <tr>
+                    <td class="text-center">@i.ID</td>
+                    <td class="text-center">@i.Name</td>
+                    <td class="text-center">@i.Address</td>
+                    <td class="text-center">@i.Description</td>
+                    <td class="text-center"><a style="display:none">@HiddenstrBirthDay</a>  @string.Format("{0:dd/MM/yyyy}", @i.BirthDay)</td>       @*以a标签包裹*@
+                    <td class="text-center"><a style="display:none">@HiddenstrUpdatedDate</a>  @string.Format("{0:dd/MM/yyyy}", @i.UpdatedDate)</td>
+
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#tblnotifyme").DataTable({
+            "iDisplayLength": 25,
+            "aaSorting": [[0, "desc"]]
+        });
+    });
+</script>
