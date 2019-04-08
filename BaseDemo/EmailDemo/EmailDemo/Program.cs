@@ -11,9 +11,9 @@ namespace EmailDemo
     {
         public static void Main(string[] args)
         {
-            string mailTo = "wangqilong@basechina.net";
-            string mailSubject = "Send Email Test";
-            string mailContent = "<html><body><div><font color='blue'>This is a email for Send Email Test</font></div></body></html>";
+            string mailTo = "wangqilong**************";  //接收方
+            string mailSubject = "Send Email Test";      //邮件主题   
+            string mailContent = "<html><body><div><font color='blue'>This is a email for Send Email Test</font></div></body></html>";  //邮件内容
             SendEmail(mailTo, mailSubject, mailContent);
         }
 
