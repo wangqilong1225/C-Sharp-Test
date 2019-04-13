@@ -4,11 +4,11 @@ using System.Xml.Serialization;
 namespace XMLSerializer.Model
 {
     //XML 根 命名空间
-    [XmlRoot(Namespace = "http://xmlSerialization.com/schema/TestDemo", ElementName = "GetMyFeesEstimateResponse", IsNullable = false)]
+    [XmlRoot(Namespace = "http://xmlSerialization.com/schema/TestDemo", ElementName = "GetResponse", IsNullable = false)]
     public class RequestResponse
     {
         //对应XML中节点名称
-        [XmlElement(ElementName = "GetMyFeesEstimateResult")]
+        [XmlElement(ElementName = "GetMyResult")]
         public GetMyFeesEstimateResult getMyFeesEstimateResult;
     }
 
@@ -31,7 +31,7 @@ namespace XMLSerializer.Model
         [XmlElement(ElementName = "FeesEstimateIdentifier")]
         public FeesEstimateIdentifier feesEstimateIdentifier;
         [XmlElement(ElementName = "Status")]
-        public string Status;
+        public string Status;                           //需要
     }
     
     public class FeesEstimate
@@ -43,13 +43,13 @@ namespace XMLSerializer.Model
     public class TotalFeesEstimate
     {
         [XmlElement(ElementName = "Amount")]
-        public decimal Fee;
+        public decimal Fee;                             //需要
     }
 
     public class FeesEstimateIdentifier
     {
         [XmlElement(ElementName = "IdValue")]
-        public string SKU;
+        public string SKU;                              //需要
         [XmlElement(ElementName = "PriceToEstimateFees")]
         public PriceToEstimateFees priceToEstimateFees;
     }
@@ -63,6 +63,6 @@ namespace XMLSerializer.Model
     public class ListingPrice
     {
         [XmlElement(ElementName = "Amount")]
-        public decimal Price;
+        public decimal Price;                           //需要
     }
 }

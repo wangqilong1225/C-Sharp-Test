@@ -13,7 +13,7 @@ namespace XMLSerializer
     {
         public static void Main(string[] args)
         {
-            string xml = "<GetMyFeesEstimateResponse xmlns=\"http://xmlSerialization.com/schema/TestDemo\"><GetMyFeesEstimateResult><FeesEstimateResultList><FeesEstimateResult><FeesEstimate><TotalFeesEstimate><CurrencyCode>RMB</CurrencyCode><Amount>29.96</Amount></TotalFeesEstimate></FeesEstimate><FeesEstimateIdentifier><IdValue>ZZ12345</IdValue><PriceToEstimateFees><ListingPrice><CurrencyCode>RMB</CurrencyCode><Amount>499.37</Amount></ListingPrice><Shipping><CurrencyCode>RMB</CurrencyCode><Amount>0</Amount></Shipping></PriceToEstimateFees></FeesEstimateIdentifier><Status>Success</Status></FeesEstimateResult></FeesEstimateResultList></GetMyFeesEstimateResult></GetMyFeesEstimateResponse>";         
+            string xml = "<GetResponse xmlns=\"http://xmlSerialization.com/schema/TestDemo\"><GetMyResult><FeesEstimateResultList><FeesEstimateResult><FeesEstimate><TotalFeesEstimate><CurrencyCode>RMB</CurrencyCode><Amount>29.96</Amount></TotalFeesEstimate></FeesEstimate><FeesEstimateIdentifier><IdValue>ZZ12345</IdValue><PriceToEstimateFees><ListingPrice><CurrencyCode>RMB</CurrencyCode><Amount>499.37</Amount></ListingPrice><Shipping><CurrencyCode>RMB</CurrencyCode><Amount>0</Amount></Shipping></PriceToEstimateFees></FeesEstimateIdentifier><Status>Success</Status></FeesEstimateResult></FeesEstimateResultList></GetMyResult></GetResponse>";         
             RequestResponse RequestResponse= DeserializeXml(typeof(RequestResponse), xml) as RequestResponse;
 
             //将XML数据放到ResponseModel中
