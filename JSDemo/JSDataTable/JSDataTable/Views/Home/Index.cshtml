@@ -1,0 +1,81 @@
+﻿@model List<JSDataTable.Models.People>
+@{
+    ViewBag.Title = "_AssetPartial";
+}
+<script src="~/Content/JS/jquery-2.1.1.js"></script>
+<link href="~/Content/Css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/Css/datatables.min.css" rel="stylesheet" />
+<link href="~/Content/Css/animate.css" rel="stylesheet" />
+<script src="~/Content/JS/bootstrap.min.js"></script>
+<script src="~/Content/JS/datatables.min.js"></script>
+<br><br>
+<table class="table table-bordered table-hover dataTable" id="tblnotifyme" style="width: 100%; margin-top: 10px">
+    <thead style="font-weight: bold">
+        <tr>
+            <th class="text-center">
+                ID
+            </th>
+            <th class="text-center">
+                Name
+            </th>
+            <th class="text-center">
+                Address
+            </th>
+            <th class="text-center">
+                Description
+            </th>
+            <th class="text-center">
+                BirthDay
+            </th>
+            <th class="text-center">
+                UpdatedDate
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (var i in Model)
+            {
+
+                #region yyyy/MM/dd格式转化
+                string HiddenstrBirthDay;
+                if (i.BirthDay != null)
+                {
+                    DateTime dtBirthDay = (DateTime)i.BirthDay;
+                    HiddenstrBirthDay = dtBirthDay.ToString("yyyyMMdd");  //yyyyMMddHHmmss
+                }
+                else { HiddenstrBirthDay = ""; }
+
+                string HiddenstrUpdatedDate;
+                if (i.UpdatedDate != null)
+                {
+                    DateTime dtUpdatedDate = (DateTime)i.UpdatedDate;
+                    HiddenstrUpdatedDate = dtUpdatedDate.ToString("yyyyMMdd");
+                }
+                else { HiddenstrUpdatedDate = ""; }
+                #endregion
+
+                <tr>
+                    <td class="text-center">@i.ID</td>
+                    <td class="text-center">@i.Name</td>
+                    <td class="text-center">@i.Address</td>
+                    <td class="text-center">@i.Description</td>
+                    <td class="text-center"><a style="display:none">@HiddenstrBirthDay</a>  @string.Format("{0:dd/MM/yyyy}", @i.BirthDay)</td>       @*以a标签包裹*@
+                    <td class="text-center"><a style="display:none">@HiddenstrUpdatedDate</a>  @string.Format("{0:dd/MM/yyyy}", @i.UpdatedDate)</td>
+
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#tblnotifyme").DataTable({
+            "iDisplayLength": 25,
+            "aaSorting": [[0, "desc"]]
+        });
+    });
+</script>
