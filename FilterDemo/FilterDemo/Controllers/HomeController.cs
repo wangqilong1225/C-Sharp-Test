@@ -7,14 +7,14 @@ using System.Web.Mvc;
 
 namespace FilterDemo.Controllers
 {
-    [MyActionFilter(Name ="Home")]   //控制器过滤器
+    [MyActionFilter(Name ="Home 控制器过滤")]   //控制器过滤器
     public class HomeController : Controller
     {
 
-        [MyActionFilter(Name = "Home")]   //方法过滤器
+       [MyActionFilter(Name = "Home/Index 方法过滤")]   //方法过滤器
         public ActionResult Index()
         {
-            HttpContext.Response.Write("Action方法执行中<br/>");
+            HttpContext.Response.Write("&nbsp;&nbsp;&nbsp;&nbsp;<font color='red'>Action方法执行中</font><br/>");
             return View();
         }
 
@@ -34,9 +34,5 @@ namespace FilterDemo.Controllers
             return View();
         }
 
-        public void useAuthorization()
-        {
-
-        }
     }
 }

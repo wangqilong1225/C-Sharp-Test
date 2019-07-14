@@ -15,7 +15,7 @@ namespace FilterDemo.Models
         {
             base.OnActionExecuting(filterContext);
             filterContext.HttpContext.Response.Write("OnActionExecuting---" + Name + "<br/>");
-        }
+        } 
 
         //在Action执行之中执行此方法
         public override void OnActionExecuted(ActionExecutedContext filterContext)
