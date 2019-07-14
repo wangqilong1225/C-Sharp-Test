@@ -10,8 +10,11 @@ namespace FilterDemo
         {
             filters.Add(new HandleErrorAttribute());
 
-            //添加全局过滤器
-            filters.Add(new MyActionFilterAttribute() { Name="全局过滤器"});
+            //添加Action Result全局过滤器
+            filters.Add(new MyActionFilterAttribute() { Name= "全局Action Result过滤器" });
+
+            //添加Exception全局过滤器
+            //filters.Add(new MyExceptionFilterAttribute(){ Name= "全局Exception过滤器" });
         }
     }
 }
