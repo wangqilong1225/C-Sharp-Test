@@ -18,6 +18,7 @@ namespace FilterDemo.Controllers
             return View();
         }
 
+        [MyAuthorizationFilter]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -31,6 +32,11 @@ namespace FilterDemo.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public void useAuthorization()
+        {
+
         }
     }
 }

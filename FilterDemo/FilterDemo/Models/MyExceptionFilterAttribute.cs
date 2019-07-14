@@ -12,7 +12,7 @@ namespace FilterDemo.Models
         public void OnException(ExceptionContext filterContext)
         {
             filterContext.HttpContext.Response.Write("异常发生");
-            //throw new NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

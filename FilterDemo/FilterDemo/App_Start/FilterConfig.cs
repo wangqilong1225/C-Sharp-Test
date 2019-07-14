@@ -15,6 +15,9 @@ namespace FilterDemo
 
             //添加Exception全局过滤器
             //filters.Add(new MyExceptionFilterAttribute(){ Name= "全局Exception过滤器" });
+
+            //添加Authorization全局过滤器
+            //filters.Add(new MyAuthorizationFilterAttribute(){ Name= "全局Authorization过滤器" });
         }
     }
 }
