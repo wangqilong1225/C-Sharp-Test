@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RouteDedug2", "RouteDedug2\RouteDedug2.csproj", "{622E2425-D83B-4BF8-ADC6-81614590EC8E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{3927BFE3-83E4-462A-B953-5B683B7103C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{622E2425-D83B-4BF8-ADC6-81614590EC8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{622E2425-D83B-4BF8-ADC6-81614590EC8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{622E2425-D83B-4BF8-ADC6-81614590EC8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3927BFE3-83E4-462A-B953-5B683B7103C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3927BFE3-83E4-462A-B953-5B683B7103C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3927BFE3-83E4-462A-B953-5B683B7103C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3927BFE3-83E4-462A-B953-5B683B7103C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
