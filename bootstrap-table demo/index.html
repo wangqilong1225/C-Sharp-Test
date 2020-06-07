@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>bootstrap table</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <link href="js/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="js/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" />
+    <link href="js/bootstrap-table/bootstrap-table-fixed-columns.css" rel="stylesheet" />
+
+    <script src="js/jquery/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="js/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="js/bootstrap-table/bootstrap-table-fixed-columns.js"></script>
+    <script src="js/bootstrap-table/tableExport.min.js"></script>
+    <style>
+    </style>
+
+    <script>
+        var dataJson = {
+          data:[],
+          columns:[]
+        }
+
+        $(document).ready(function () {
+          //可以请求后台数据生成
+          dataJson.columns=[
+                {
+                    field: 'Id',
+                    title: '编号',
+                    width: 150,
+                    forceExport:false,
+                    visible:true,      //列隐藏，显示
+                    forceExport:true
+                },
+                {
+                    field: 'Name',
+                    title: '&nbsp;姓名&nbsp;',
+                    width: 150,
+                    customSort:true
+                },
+                {
+                    field: 'Mon_Jan',
+                    title: '2019年1月份',
+                    width: 150,
+                    align:'center'
+                },
+                {
+                    field: 'Mon_Feb',
+                    title: '2019年2月份',
+                    width: 150,
+                    align:'center'
+                },
+                {
+                    field: 'Mon_Mar',
+                    title: '2019年3月份',
+                    width: 150,
+                    align:'center'
+                },
+                {
+                    field: 'Mon_Apr',
+                    title: '2019年4月份',
+                    width: 150,
+                    align:'center'
+                },
+                {
+                    field: 'Mon_May',
+                    title: '2019年5月份',
+                    width: 150,
+                    align:'center'
+                },
+                {
+                    field: 'Mon_Jun',
+                    title: '2019年6月份',
+                    width: 150,
+                    align:'center'
+                },{
+                    field: 'Mon_Jul',
+                    title: '2019年7月份',
+                    width: 150,
+                    align:'center'
+                },
+                {
+                    field: 'Mon_Aug',
+                    title: '2019年8月份',
+                    width: 150,
+                    align:'center'
+                },
+                {
+                    field: 'Mon_Sep',
+                    title: '2019年9月份',
+                    width: 150,
+                    align:'center'
+                },
+                {
+                    field: 'Mon_Oct',
+                    title: '2019年10月份',
+                    width: 150,
+                    align:'center'
+                },
+                {
+                    field: 'Mon_Nov',
+                    title: '2019年11月份',
+                    width: 150,
+                    align:'center'
+                },
+                {
+                    field: 'Mon_Dec',
+                    title: '2019年12月份',
+                    width: 150,
+                    align:'center'
+                },{
+                    field: 'Mon_Jan20',
+                    title: '2020年1月份',
+                    width: 150,
+                    align:'center'
+                },
+                {
+                    field: 'Mon_Feb20',
+                    title: '2020年2月份',
+                    width: 150,
+                    align:'center'
+                },
+                {
+                    field: 'Mon_Mar20',
+                    title: '2020年3月份',
+                    width: 150,
+                    align:'center'
+                },
+                {
+                    field: 'Mon_Apr20',
+                    title: '2020年4月份',
+                    width: 150,
+                    align:'center'
+                },
+                {
+                    field: 'Mon_May20',
+                    title: '2020年5月份',
+                    width: 150,
+                    align:'center'
+                },
+                {
+                    field: 'Mon_Jun20',
+                    title: '2020年6月份',
+                    width: 150,
+                    align:'center'
+                }
+          ];
+
+           //可以请求后台数据生成
+          dataJson.data=[
+            {Id:1,Name:'张三',Mon_Jan:'60',Mon_Feb:'68',Mon_Mar:'71',Mon_Apr:'55',Mon_May:'87',Mon_Jun:'92',Mon_Jul:'88',Mon_Aug:'72',Mon_Sep:'85',Mon_Oct:'68',Mon_Nov:'95',Mon_Dec:'88',Mon_Jan20:53,Mon_Feb20:82,Mon_Mar20:76,Mon_Apr20:85,Mon_May20:64,Mon_Jun20:85},
+            {Id:2,Name:'李四',Mon_Jan:'56',Mon_Feb:'84',Mon_Mar:'56',Mon_Apr:'53',Mon_May:'76',Mon_Jun:'72',Mon_Jul:'53',Mon_Aug:'83',Mon_Sep:'97',Mon_Oct:'56',Mon_Nov:'79',Mon_Dec:'52',Mon_Jan20:43,Mon_Feb20:98,Mon_Mar20:87,Mon_Apr20:85,Mon_May20:56,Mon_Jun20:70},
+            {Id:3,Name:'王五',Mon_Jan:'75',Mon_Feb:'58',Mon_Mar:'75',Mon_Apr:'84',Mon_May:'87',Mon_Jun:'46',Mon_Jul:'76',Mon_Aug:'72',Mon_Sep:'36',Mon_Oct:'88',Mon_Nov:'86',Mon_Dec:'64',Mon_Jan20:85,Mon_Feb20:46,Mon_Mar20:56,Mon_Apr20:74,Mon_May20:80,Mon_Jun20:46},
+            {Id:4,Name:'赵六',Mon_Jan:'38',Mon_Feb:'67',Mon_Mar:'68',Mon_Apr:'43',Mon_May:'90',Mon_Jun:'82',Mon_Jul:'88',Mon_Aug:'54',Mon_Sep:'90',Mon_Oct:'64',Mon_Nov:'92',Mon_Dec:'75',Mon_Jan20:86,Mon_Feb20:78,Mon_Mar20:54,Mon_Apr20:85,Mon_May20:89,Mon_Jun20:85},
+            {Id:5,Name:'孙二',Mon_Jan:'60',Mon_Feb:'68',Mon_Mar:'79',Mon_Apr:'55',Mon_May:'58',Mon_Jun:'78',Mon_Jul:'83',Mon_Aug:'52',Mon_Sep:'56',Mon_Oct:'58',Mon_Nov:'46',Mon_Dec:'45',Mon_Jan20:53,Mon_Feb20:55,Mon_Mar20:76,Mon_Apr20:75,Mon_May20:64,Mon_Jun20:43},
+            {Id:6,Name:'琉璃',Mon_Jan:'68',Mon_Feb:'83',Mon_Mar:'83',Mon_Apr:'40',Mon_May:'46',Mon_Jun:'46',Mon_Jul:'79',Mon_Aug:'72',Mon_Sep:'78',Mon_Oct:'53',Mon_Nov:'77',Mon_Dec:'82',Mon_Jan20:78,Mon_Feb20:82,Mon_Mar20:76,Mon_Apr20:85,Mon_May20:76,Mon_Jun20:85},
+            {Id:7,Name:'李丽',Mon_Jan:'56',Mon_Feb:'53',Mon_Mar:'73',Mon_Apr:'48',Mon_May:'36',Mon_Jun:'73',Mon_Jul:'76',Mon_Aug:'71',Mon_Sep:'76',Mon_Oct:'52',Mon_Nov:'86',Mon_Dec:'90',Mon_Jan20:53,Mon_Feb20:56,Mon_Mar20:57,Mon_Apr20:86,Mon_May20:64,Mon_Jun20:56},
+            {Id:8,Name:'张强',Mon_Jan:'95',Mon_Feb:'68',Mon_Mar:'80',Mon_Apr:'68',Mon_May:'76',Mon_Jun:'90',Mon_Jul:'48',Mon_Aug:'28',Mon_Sep:'85',Mon_Oct:'49',Mon_Nov:'91',Mon_Dec:'56',Mon_Jan20:76,Mon_Feb20:58,Mon_Mar20:51,Mon_Apr20:85,Mon_May20:71,Mon_Jun20:82},
+            {Id:9,Name:'子睿',Mon_Jan:'35',Mon_Feb:'76',Mon_Mar:'71',Mon_Apr:'76',Mon_May:'78',Mon_Jun:'92',Mon_Jul:'73',Mon_Aug:'73',Mon_Sep:'53',Mon_Oct:'38',Mon_Nov:'65',Mon_Dec:'73',Mon_Jan20:71,Mon_Feb20:52,Mon_Mar20:55,Mon_Apr20:67,Mon_May20:77,Mon_Jun20:82},
+            {Id:10,Name:'小明',Mon_Jan:'60',Mon_Feb:'68',Mon_Mar:'79',Mon_Apr:'55',Mon_May:'58',Mon_Jun:'78',Mon_Jul:'83',Mon_Aug:'52',Mon_Sep:'56',Mon_Oct:'58',Mon_Nov:'46',Mon_Dec:'45',Mon_Jan20:53,Mon_Feb20:51,Mon_Mar20:69,Mon_Apr20:85,Mon_May20:64,Mon_Jun20:85},
+          ];
+
+          FixTables();
+        });
+
+        function FixTables() {
+            $('#tb_user').bootstrapTable("destroy");//销毁，如果需要重新渲染table，必须先销毁
+            
+            $('#tb_user').bootstrapTable({
+                data: dataJson.data,                //直接从本地数据初始化表格
+                method: 'get',                      //请求方式（*）
+                striped: true,                      //是否显示行间隔色
+                cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+                pagination: false,                  //是否显示分页（*）
+                sortable: false,                    //是否启用排序
+                sortOrder: "asc",                   //排序方式
+                sidePagination: "client",           //分页方式：client客户端分页，server服务端分页（*）
+                search: false,                      //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+                strictSearch: false,
+                showColumns: false,                 //是否显示所有的列,右上角的列选择按钮
+                showRefresh: false,                 //是否显示刷新按钮
+                //showExport: false,                  //是否显示导出按钮
+                //exportDataType: "all",              //导出数据格式
+                exportOptions: {                    //导出设置
+                  fileName: 'Table数据',             //下载文件名称
+                },
+                minimumCountColumns: 2,             //最少允许的列数
+                height: 400,
+                selectItemName: 'parentItem',
+                fixedColumns: true,                 //是否冻结列
+                fixedNumber: 2,                     //冻结列数
+                columns: dataJson.columns
+            });
+        }
+
+
+      //导出数据
+      function exportData(type){
+          $('#tb_user').tableExport({
+              type: type,  //xml json sql...
+              //ignoreColumn: [1],//忽略某一列的索引
+              //fileName: 'xxx',//与上面的table设置名称重复
+              onCellHtmlData: function (cell, row, col, data){ //处理导出内容,自定义某一行、某一列、某个单元格的内容
+                return data;
+              },
+          });
+      }
+
+    </script>
+</head>
+<body>
+    <section class="content" style="overflow-x: hidden;">
+        <div class="row">
+            <div class="col-md-12 no-padding">
+                <div class="box">
+                    <div class="box-body">
+                        <div>
+                            <button type="button" onclick="exportData('excel')" class='btn btn-mini btn-info' style="margin: 2px 15px; float: right;">导出Excel</button>
+                            <button type="button" onclick="exportData('xml')" class='btn btn-mini btn-success' style="margin: 2px -10px; float: right;">导出XML</button>
+                            <div class="panel-body">
+                                <table id="tb_user"></table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
