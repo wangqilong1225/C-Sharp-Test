@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Demo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/echarts.min.js"></script>
+    <script>
+        var dataJson = {
+            IsClickFlg: false,
+        }
+
+
+        $(document).ready(function () {
+            EchartInit();
+        });
+
+        function EchartInit() {
+            var dom = document.getElementById("div_echart");
+            var mychart = echarts.init(dom);
+            var app = {};
+            var option = {
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'cross',
+                        label: {
+                            backgroundColor: '#6a7985'
+                        }
+                    }
+                },
+                legend: {
+                    data: ['电话销售', '纸质传媒', '邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        name: '电话销售',
+                        type: 'line',
+                        stack: '总量',
+                        areaStyle: {},
+                        data: [10, 22, 11, 24, 10, 23, 21]
+                    },
+                    {
+                        name: '纸质传媒',
+                        type: 'line',
+                        stack: '总量',
+                        areaStyle: {},
+                        data: [12, 13, 10, 13, 90, 23, 21]
+                    },
+                    {
+                        name: '邮件营销',
+                        type: 'line',
+                        stack: '总量',
+                        areaStyle: {},
+                        data: [120, 132, 101, 134, 90, 230, 210]
+                    },
+                    {
+                        name: '联盟广告',
+                        type: 'line',
+                        stack: '总量',
+                        areaStyle: {},
+                        data: [220, 182, 191, 234, 290, 330, 310]
+                    },
+                    {
+                        name: '视频广告',
+                        type: 'line',
+                        stack: '总量',
+                        areaStyle: {},
+                        data: [150, 232, 201, 154, 190, 330, 410]
+                    },
+                    {
+                        name: '直接访问',
+                        type: 'line',
+                        stack: '总量',
+                        areaStyle: {},
+                        data: [320, 332, 301, 334, 390, 330, 320]
+                    },
+                    {
+                        name: '搜索引擎',
+                        type: 'line',
+                        stack: '总量',
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'top'
+                            }
+                        },
+                        areaStyle: {},
+                        data: [220, 332, 401, 234, 590, 630, 320]
+                    }
+                ]
+            };
+
+            if (option && typeof option === "object") {
+                mychart.setOption(option, true);
+            }
+
+            var color = "";
+            mychart.on('click', function (params) {
+                //触发了点击事件
+                dataJson.IsClickFlg = true;
+
+                //记录区域高亮前的颜色
+                color = params.color;
+                mychart.setOption({
+                    tooltip: {
+                        trigger: 'item',
+                    },
+                    series: {
+                        name: params.seriesName,
+                        symbolSize: 5,
+                        lineStyle: {
+                            width: 5
+                        },
+                        areaStyle: {
+                            color: 'red'
+                        },
+                        tooltip: {
+                            textStyle: {
+                                color: 'white',
+                                fontSize: 14
+                            }
+                        }
+                    },
+                });
+            });
+
+            mychart.on('mouseout', function (params) {
+                //加上判断是否点击过的标志作用，避免鼠标监控事件一直触发，导致区域颜色会改变，可以去掉这句代码试下
+                if (dataJson.IsClickFlg) {
+                    mychart.setOption({
+                        tooltip: {
+                            trigger: 'axis',
+                        },
+                        series: {
+                            name: params.seriesName,
+                            symbolSize: 2,
+                            lineStyle: {
+                                width: 2
+                            },
+                            areaStyle: {
+                                color: color
+                            },
+                        }
+                    });
+                    //区域颜色还原，点击标志还原
+                    dataJson.IsClickFlg = false;
+                }
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <div id="div_echart" style="width: 1000px; height: 500px; margin: 0 auto">
+    </div>
+</body>
+</html>
+
+<!-- 
+    1.原理：点击节点时，改变区域背景颜色，当鼠标离开节点时，还原区域背景色
+    2.当折线很少且松散时，可以鼠标触发节点区域高亮，离开时还原背景色，折线多密集时，不建议使用
+ -->
